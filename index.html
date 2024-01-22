@@ -15,13 +15,33 @@
         <p id="next-url">url</p>
         <button id="button">NEXT >></button>
         <p id="status" style="color: rgb(107, 7, 7);"></p>
+        <p id="components"></p>
         <script id="script">
             GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/details?id=ru.berizaryad';
             APPSTORE_URL = "itms-apps://itunes.apple.com/app/apple-store/id1458730835";
             IOS_CUSTOM_SCHEME_URL ="berizaryad:/"
 
+            function getComponents() {
+                // gamut?
+                // hdr?
+                // timezone
+
+                return {
+                    screenSize: {width: window.screen.width, height: window.screen.height},
+                    colorDepth: window.screen.colorDepth,
+                    cpuClass: navigator.cpuClass,
+                    deviceMemory: navigator.deviceMemory,
+                    conc: navigator.hardwareConcurrency,
+                    osCpu: navigator.oscpu,
+                    platform: navigator.platform,
+                    touches: navigator.maxTouchPoints
+                }
+            }
+
             window.addEventListener('DOMContentLoaded', function() {
                 console.log('onload');
+                console.log(getComponents());
+                document.getElementById('components').textContent = '' + JSON.stringify(getComponents());
                 // Initialize the agent at application startup.
                 // If you're using an ad blocker or Brave/Firefox, this import will not work.
                 // Please use the NPM package instead: https://t.ly/ORyXk
@@ -38,6 +58,8 @@
 
                         // Optionally, you can make a visitor identifier from your custom list of components
                         const visitorId = FingerprintJS.hashComponents(components)
+
+                        console.log(result.components)
 
                         // // This is the visitor identifier:
                         // const visitorId = result.visitorId
