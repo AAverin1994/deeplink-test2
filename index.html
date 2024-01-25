@@ -57,12 +57,20 @@
                     .then(fp => fp.get())
                     .then(result => {
                         // The `languages` and `audio` components will be excluded
-                        const { screenFrame, screenResolution, vendorFlavors, canvas, ...components } = result.components
+                        const { userAgent, ...sourceComponents } = getComponents()
+                        var components = {}
 
+                        Object.keys(sourceComponents).forEach(function(key, _) {
+                            const value = sourceComponents[key]
+                            if (value == undefined) {
+                                return
+                            }
+                            components[key] = {value: value, duration: 0}
+                        });
+                        
                         // Optionally, you can make a visitor identifier from your custom list of components
+                        console.log('Active comnponents', components)
                         const visitorId = FingerprintJS.hashComponents(components)
-
-                        console.log(result.components)
 
                         // // This is the visitor identifier:
                         // const visitorId = result.visitorId
