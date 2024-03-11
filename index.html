@@ -28,14 +28,7 @@
 
                 return {
                     screenSize: {width: window.screen.width, height: window.screen.height},
-                    colorDepth: window.screen.colorDepth,
-                    cpuClass: navigator.cpuClass,
-                    deviceMemory: navigator.deviceMemory,
-                    conc: navigator.hardwareConcurrency,
-                    osCpu: navigator.oscpu,
                     platform: navigator.platform,
-                    touches: navigator.maxTouchPoints,
-                    userAgent: navigator.userAgent,
                     languages: navigator.languages,
                     timeZone: (new Date()).getTimezoneOffset()
                 }
